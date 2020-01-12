@@ -1,11 +1,14 @@
 {
   "name": "ngdictionary",
   "version": "0.0.0",
+  "license": "MIT",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "build:ssr": "ng run NGDictionary:server:dev",
+    "build:prod": "ng build --prod --vendor-chunk",
+    "clean": "rimraf ./dist/",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
