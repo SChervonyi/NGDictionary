@@ -17,7 +17,9 @@
     <div class="form-group">
       <button type="submit" class="btn btn-primary btn-block btn-raised" type="submit" [disabled]="loginForm.invalid">
         <span [hidden]="isLoading">Submit</span>
-        <!-- Spiner -->
+        <span [hidden]="!isLoading">
+          <fa-icon icon="asterisk" size="3x" [spin]="true"></fa-icon>
+        </span>
       </button>
     </div>
     <a [routerLink]="['/auth/register']">Don't have an account? Sign up here!</a>
