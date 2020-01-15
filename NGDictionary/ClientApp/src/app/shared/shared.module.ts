@@ -3,8 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { library } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
 
 import {
   faAsterisk,
@@ -35,34 +34,6 @@ import {
 
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 
-library.add(
-  faGithub,
-  faAsterisk,
-  faBars,
-  faUserCircle,
-  faPowerOff,
-  faCog,
-  faRocket,
-  faPlayCircle,
-  faPlus,
-  faEdit,
-  faTrash,
-  faTimes,
-  faCaretUp,
-  faCaretDown,
-  faExclamationTriangle,
-  faFilter,
-  faTasks,
-  faCheck,
-  faSquare,
-  faLanguage,
-  faPaintBrush,
-  faLightbulb,
-  faWindowMaximize,
-  faStream,
-  faBook
-);
-
 @NgModule({
   imports: [
     CommonModule,
@@ -82,4 +53,34 @@ library.add(
     FontAwesomeModule
   ]
 })
-export class SharedModule { }
+export class SharedModule {
+  constructor(private library: FaIconLibrary) {
+    library.addIcons(
+      faGithub,
+      faAsterisk,
+      faBars,
+      faUserCircle,
+      faPowerOff,
+      faCog,
+      faRocket,
+      faPlayCircle,
+      faPlus,
+      faEdit,
+      faTrash,
+      faTimes,
+      faCaretUp,
+      faCaretDown,
+      faExclamationTriangle,
+      faFilter,
+      faTasks,
+      faCheck,
+      faSquare,
+      faLanguage,
+      faPaintBrush,
+      faLightbulb,
+      faWindowMaximize,
+      faStream,
+      faBook
+    );
+  }
+}
