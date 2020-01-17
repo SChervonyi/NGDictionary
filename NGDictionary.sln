@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NGDictionary", "NGDictionary\NGDictionary.csproj", "{9ADA49DF-C604-4A63-80BD-BD1B88FAB31A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NGDictionary", "NGDictionary\NGDictionary.csproj", "{9ADA49DF-C604-4A63-80BD-BD1B88FAB31A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NGDictionary.Dto", "NGDictionary.Dto\NGDictionary.Dto.csproj", "{CACB0666-8CFB-401F-A274-95882411D7C0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{9ADA49DF-C604-4A63-80BD-BD1B88FAB31A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9ADA49DF-C604-4A63-80BD-BD1B88FAB31A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9ADA49DF-C604-4A63-80BD-BD1B88FAB31A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CACB0666-8CFB-401F-A274-95882411D7C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CACB0666-8CFB-401F-A274-95882411D7C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CACB0666-8CFB-401F-A274-95882411D7C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CACB0666-8CFB-401F-A274-95882411D7C0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
