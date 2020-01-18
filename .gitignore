@@ -1,2 +1,4 @@
 /.vs
-NGDictionary.Dto/obj/
+
+**/bin/
+**/obj/
