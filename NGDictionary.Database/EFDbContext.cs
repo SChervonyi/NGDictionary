@@ -4,9 +4,9 @@ using System;
 
 namespace NGDictionary.Database
 {
-    public class EFDbContex : DbContext
+    public class EFDbContext : DbContext
     {
-        public EFDbContex(DbContextOptions<EFDbContex> options)
+        public EFDbContext(DbContextOptions<EFDbContext> options)
             : base(options)
         {
             Database.EnsureCreated();
