@@ -4,7 +4,7 @@ using System.Text;
 
 namespace NGDictionary.Dto
 {
-    public class Dictionary
+    public class DictionaryMeta
     {
         public Guid Id { get; set; }
 
@@ -13,9 +13,5 @@ namespace NGDictionary.Dto
         public string Description { get; set; }
 
         public string ImageUrl { get; set; }
-
-        public bool IsFavorite { get; set; }
-
-        public IList<Word> Words { get; set; }
     }
 }
