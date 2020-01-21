@@ -9,7 +9,7 @@ namespace NGDictionary.Database.Interfaces.Repositories
 
         void AddUser(User user);
 
-        void UpdateUser(int userId);
+        void UpdateUser(User user);
 
         void DeleteUser(int userId);
     }
