@@ -3,7 +3,7 @@ using System;
 
 namespace NGDictionary.Database.Interfaces.Repositories
 {
-    interface IWordRepository : IDisposable
+    public interface IWordRepository
     {
         void SaveOrUpdateWord(Word word, Guid dictionaryUid);
 

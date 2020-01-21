@@ -6,10 +6,9 @@ using System.Text;
 
 namespace NGDictionary.Database.Repositories
 {
-    class DictionaryRepository : BaseRepository<EFDbContext>, IDictionaryRepository
+    public class DictionaryRepository: IDictionaryRepository
     {
         public DictionaryRepository(EFDbContext context)
-            : base(context)
         {
         }
 

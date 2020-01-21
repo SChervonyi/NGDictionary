@@ -3,7 +3,7 @@ using System;
 
 namespace NGDictionary.Database.Interfaces.Repositories
 {
-    interface IUserRepository : IDisposable
+    public interface IUserRepository
     {
         User GetUserByLogin(string login);
 

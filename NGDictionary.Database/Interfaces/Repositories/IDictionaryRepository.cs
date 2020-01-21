@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace NGDictionary.Database.Interfaces.Repositories
 {
-    interface IDictionaryRepository : IDisposable
+    public interface IDictionaryRepository
     {
         void AddOrUpdateDictionary(Dictionary dictionary);
 
