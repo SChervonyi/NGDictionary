@@ -28,6 +28,7 @@
   <ItemGroup>
     <ProjectReference Include="..\NGDictionary.Database\NGDictionary.Database.csproj" />
     <ProjectReference Include="..\NGDictionary.Dto\NGDictionary.Dto.csproj" />
+    <ProjectReference Include="..\NGDictionary.Services\NGDictionary.Services.csproj" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
