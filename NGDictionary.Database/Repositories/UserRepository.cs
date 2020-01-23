@@ -1,5 +1,4 @@
-﻿using NGDictionary.Database.Interfaces.Helpers;
-using NGDictionary.Database.Interfaces.Repositories;
+﻿using NGDictionary.Database.Interfaces.Repositories;
 using NGDictionary.Dto;
 using System;
 using System.Collections.Generic;
