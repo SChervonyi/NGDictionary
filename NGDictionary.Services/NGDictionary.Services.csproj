@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Cryptography.KeyDerivation" Version="3.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\NGDictionary.Database\NGDictionary.Database.csproj" />
     <ProjectReference Include="..\NGDictionary.Dto\NGDictionary.Dto.csproj" />
   </ItemGroup>
