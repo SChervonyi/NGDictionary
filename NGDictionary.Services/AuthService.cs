@@ -5,7 +5,6 @@ using NGDictionary.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Security.Cryptography;
-using System.Text;
 
 namespace NGDictionary.Services
 {
@@ -26,17 +25,17 @@ namespace NGDictionary.Services
 
         public void DeleteUser(int userId)
         {
-            throw new NotImplementedException();
+            userRepository.DeleteUser(userId);
         }
 
         public User GetUserByLogin(string login)
         {
-            throw new NotImplementedException();
+            return userRepository.GetUserByLogin(login);
         }
 
         public void UpdateUser(User user)
         {
-            throw new NotImplementedException();
+            userRepository.UpdateUser(user);
         }
 
         private bool CheckPassword(string user, string password)
