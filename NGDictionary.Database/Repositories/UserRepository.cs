@@ -29,7 +29,7 @@ namespace NGDictionary.Database.Repositories
 
         public User GetUserByLogin(string login)
         {
-            return context.Users.SingleOrDefault(user => user.Login == login); // TODO: handle null result?
+            return context.Users.SingleOrDefault(user => user.Login == login);
         }
 
         public void UpdateUser(User user)

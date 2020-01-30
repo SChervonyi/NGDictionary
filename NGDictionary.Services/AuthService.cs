@@ -26,6 +26,13 @@ namespace NGDictionary.Services
             userRepository.AddUser(user);
         }
 
+        public void UpdatePassword(string login, string newPassword)
+        {
+            var user = userRepository.GetUserByLogin(login);
+            user.Password = passwordHasher.Hash(newPassword);
+            userRepository.UpdateUser(user);
+        }
+
         public void DeleteUser(int userId)
         {
             userRepository.DeleteUser(userId);
@@ -41,7 +48,7 @@ namespace NGDictionary.Services
             userRepository.UpdateUser(user);
         }
 
-        private bool CheckPassword(string user, string password)
+        private bool CheckPassword(string login, string password)
         {
             // TODO: Implement
             return true;
