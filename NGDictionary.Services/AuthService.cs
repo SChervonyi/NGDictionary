@@ -51,6 +51,7 @@ namespace NGDictionary.Services
         private bool CheckPassword(string login, string password)
         {
             // TODO: Implement
+            var user = userRepository.GetUserByLogin(login);
             return true;
         }
     }

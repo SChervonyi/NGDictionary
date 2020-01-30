@@ -16,6 +16,6 @@ namespace NGDictionary.Dto
 
         public bool IsFavorite { get; set; }
 
-        public IList<Word> Words { get; set; }
+        public IList<Word>? Words { get; set; }
     }
 }
