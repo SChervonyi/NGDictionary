@@ -4,7 +4,7 @@ namespace NGDictionary.Services.Interfaces
 {
     public interface IAuthService
     {
-        User GetUserByLogin(string login);
+        User Login(string login, string password);
 
         void AddUser(User user);
 

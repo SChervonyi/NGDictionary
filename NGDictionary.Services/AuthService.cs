@@ -1,11 +1,10 @@
-﻿using Microsoft.AspNetCore.Cryptography.KeyDerivation;
-using NGDictionary.Database.Interfaces.Repositories;
+﻿using NGDictionary.Database.Interfaces.Repositories;
 using NGDictionary.Dto;
 using NGDictionary.Services.Interfaces;
 using NGDictionary.Services.Interfaces.Helpers;
 using System;
 using System.Collections.Generic;
-using System.Security.Cryptography;
+using System.Security.Authentication;
 
 namespace NGDictionary.Services
 {
@@ -38,21 +37,22 @@ namespace NGDictionary.Services
             userRepository.DeleteUser(userId);
         }
 
-        public User GetUserByLogin(string login)
+        public User Login(string login, string password)
         {
-            return userRepository.GetUserByLogin(login);
+            // TODO: Handle if needsUpgrade is true;
+            var user = userRepository.GetUserByLogin(login);
+            if (user is null) throw new AuthenticationException("Login/Password combination is not valid.");
+
+            var (verified, needsUpgrade) = passwordHasher.Check(user.Password, password);
+
+            if(!verified) throw new AuthenticationException("Login/Password combination is not valid.");
+
+            return user;
         }
 
         public void UpdateUser(User user)
         {
             userRepository.UpdateUser(user);
-        }
-
-        private bool CheckPassword(string login, string password)
-        {
-            // TODO: Implement
-            var user = userRepository.GetUserByLogin(login);
-            return true;
         }
     }
 }
