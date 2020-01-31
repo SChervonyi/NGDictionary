@@ -12,12 +12,12 @@ namespace NGDictionary.Database
             Database.EnsureCreated();
         }
 
-        public DbSet<User> Users { get; set; }
+        public DbSet<User> Users { get; set; } = null!;
 
-        public DbSet<Dictionary> Dictionaries { get; set; }
+        public DbSet<Dictionary> Dictionaries { get; set; } = null!;
 
-        public DbSet<DictionaryMeta> DictionariesMeta { get; set; }
+        public DbSet<DictionaryMeta> DictionariesMeta { get; set; } = null!;
 
-        public DbSet<Word> Words { get; set; }
+        public DbSet<Word> Words { get; set; } = null!;
     }
 }
