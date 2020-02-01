@@ -28,6 +28,8 @@ namespace NGDictionary.Services
         public void UpdatePassword(string login, string newPassword)
         {
             var user = userRepository.GetUserByLogin(login);
+            if (user is null) throw new ApplicationException("User not found.");
+
             user.Password = passwordHasher.Hash(newPassword);
             userRepository.UpdateUser(user);
         }
