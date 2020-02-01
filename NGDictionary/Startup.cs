@@ -2,9 +2,18 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using NGDictionary.Database;
+using NGDictionary.Database.Interfaces;
+using NGDictionary.Database.Interfaces.Repositories;
+using NGDictionary.Database.Repositories;
+using NGDictionary.Services;
+using NGDictionary.Services.Helpers;
+using NGDictionary.Services.Interfaces;
+using NGDictionary.Services.Interfaces.Helpers;
 
 namespace NGDictionary
 {
@@ -21,6 +30,17 @@ namespace NGDictionary
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            services.AddDbContext<EFDbContext>(options => 
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IDictionaryRepository, DictionaryRepository>();
+            services.AddScoped<IWordRepository, WordRepository>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IPasswordHasher, PasswordHasher>();
+
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
