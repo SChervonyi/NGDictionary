@@ -1,8 +1,9 @@
 ﻿using NGDictionary.Dto;
+using System;
 
 namespace NGDictionary.Services.Interfaces
 {
-    public interface IAuthService
+    public interface IAuthService: IDisposable
     {
         User Login(string login, string password);
 
