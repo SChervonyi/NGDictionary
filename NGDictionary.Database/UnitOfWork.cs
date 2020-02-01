@@ -9,12 +9,12 @@ namespace NGDictionary.Database
 {
     public class UnitOfWork: IUnitOfWork, IDisposable
     {
-        private bool disposed = false;
-        protected EFDbContext context;
+        private bool _disposed = false;
+        protected EFDbContext _context;
 
         public UnitOfWork(EFDbContext context)
         {
-            this.context = context;
+            _context = context;
             DictionaryRepository = new DictionaryRepository(context);
             UserRepository = new UserRepository(context);
             WordRepository = new WordRepository(context);
@@ -28,19 +28,19 @@ namespace NGDictionary.Database
 
         public void Save()
         {
-            context.SaveChanges();
+            _context.SaveChanges();
         }
 
         protected virtual void Dispose(bool disposing)
         {
-            if (!this.disposed)
+            if (!_disposed)
             {
                 if (disposing)
                 {
-                    context.Dispose();
+                    _context.Dispose();
                 }
             }
-            this.disposed = true;
+            _disposed = true;
         }
 
         public void Dispose()

@@ -15,11 +15,11 @@ namespace NGDictionary.Controllers
     [AllowAnonymous]
     public class AuthController : Controller
     {
-        private IAuthService authService;
+        private IAuthService _authService;
 
         public AuthController(IAuthService authService)
         {
-            this.authService = authService;
+            _authService = authService;
         }
 
         [HttpPost]
@@ -30,13 +30,13 @@ namespace NGDictionary.Controllers
                 return BadRequest();
             }
 
-            authService.AddUser(user);
+            _authService.AddUser(user);
             return Ok(user);
         }
 
         protected override void Dispose(bool disposing)
         {
-            authService.Dispose();
+            _authService.Dispose();
             base.Dispose(disposing);
         }
     }

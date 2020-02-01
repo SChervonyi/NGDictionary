@@ -10,47 +10,47 @@ namespace NGDictionary.Services
 {
     public class AuthService : IAuthService, IDisposable
     {
-        private bool disposed = false;
+        private bool _disposed = false;
 
-        private IUnitOfWork unitOfWork;
-        private IPasswordHasher passwordHasher;
+        private IUnitOfWork _unitOfWork;
+        private IPasswordHasher _passwordHasher;
 
         public AuthService(IUnitOfWork unitOfWork, IPasswordHasher passwordHasher)
         {
-            this.unitOfWork = unitOfWork;
-            this.passwordHasher = passwordHasher;
+            _unitOfWork = unitOfWork;
+            _passwordHasher = passwordHasher;
         }
 
         public void AddUser(User user)
         {
-            user.Password = passwordHasher.Hash(user.Password);
-            unitOfWork.UserRepository.AddUser(user);
-            unitOfWork.Save();
+            user.Password = _passwordHasher.Hash(user.Password);
+            _unitOfWork.UserRepository.AddUser(user);
+            _unitOfWork.Save();
         }
 
         public void UpdatePassword(string login, string newPassword)
         {
-            var user = unitOfWork.UserRepository.GetUserByLogin(login);
+            var user = _unitOfWork.UserRepository.GetUserByLogin(login);
             if (user is null) throw new ApplicationException("User not found.");
 
-            user.Password = passwordHasher.Hash(newPassword);
-            unitOfWork.UserRepository.UpdateUser(user);
-            unitOfWork.Save();
+            user.Password = _passwordHasher.Hash(newPassword);
+            _unitOfWork.UserRepository.UpdateUser(user);
+            _unitOfWork.Save();
         }
 
         public void DeleteUser(int userId)
         {
-            unitOfWork.UserRepository.DeleteUser(userId);
-            unitOfWork.Save();
+            _unitOfWork.UserRepository.DeleteUser(userId);
+            _unitOfWork.Save();
         }
 
         public User Login(string login, string password)
         {
             // TODO: Handle if needsUpgrade is true;
-            var user = unitOfWork.UserRepository.GetUserByLogin(login);
+            var user = _unitOfWork.UserRepository.GetUserByLogin(login);
             if (user is null) throw new AuthenticationException("Login/Password combination is not valid.");
 
-            var (verified, needsUpgrade) = passwordHasher.Check(user.Password, password);
+            var (verified, needsUpgrade) = _passwordHasher.Check(user.Password, password);
 
             if(!verified) throw new AuthenticationException("Login/Password combination is not valid.");
 
@@ -59,8 +59,8 @@ namespace NGDictionary.Services
 
         public void UpdateUser(User user)
         {
-            unitOfWork.UserRepository.UpdateUser(user);
-            unitOfWork.Save();
+            _unitOfWork.UserRepository.UpdateUser(user);
+            _unitOfWork.Save();
         }
 
         public void Dispose()
@@ -71,14 +71,14 @@ namespace NGDictionary.Services
 
         protected virtual void Dispose(bool disposing)
         {
-            if (!this.disposed)
+            if (!_disposed)
             {
                 if (disposing)
                 {
-                    unitOfWork.Dispose();
+                    _unitOfWork.Dispose();
                 }
             }
-            this.disposed = true;
+            _disposed = true;
         }
     }
 }

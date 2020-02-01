@@ -9,32 +9,32 @@ namespace NGDictionary.Database.Repositories
 {
     public class UserRepository: IUserRepository
     {
-        private EFDbContext context;
+        private EFDbContext _context;
 
         public UserRepository(EFDbContext context)
         {
-            this.context = context;
+            _context = context;
         }
 
         public void AddUser(User user)
         {
-            context.Users.Add(user);
+            _context.Users.Add(user);
         }
 
         public void DeleteUser(int userId)
         {
-            var userToDelete = context.Users.Find(userId);
-            context.Users.Remove(userToDelete);
+            var userToDelete = _context.Users.Find(userId);
+            _context.Users.Remove(userToDelete);
         }
 
         public User? GetUserByLogin(string login)
         {
-            return context.Users.SingleOrDefault(user => user.Login == login);
+            return _context.Users.SingleOrDefault(user => user.Login == login);
         }
 
         public void UpdateUser(User user)
         {
-            context.Users.Update(user);
+            _context.Users.Update(user);
         }
     }
 }
