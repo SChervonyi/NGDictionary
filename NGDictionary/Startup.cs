@@ -30,6 +30,11 @@ namespace NGDictionary
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            // https://docs.microsoft.com/en-us/aspnet/core/security/anti-request-forgery?view=aspnetcore-3.1
+            // https://www.domstamand.com/secure-your-angularasp-net-core-application-with-anti-forgery-token/
+            // Antiforgery token automatically added with call:
+            // MapControllerRoute or AddMvc or MapRazorPages or MapBlazorHub
+            //services.AddAntiforgery(options => options.HeaderName = "X-XSRF-TOKEN");
 
             services.AddDbContext<EFDbContext>(options => 
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
