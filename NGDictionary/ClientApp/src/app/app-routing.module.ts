@@ -6,7 +6,7 @@ import { NoAuthGuard } from '@core/guard/no-auth.guard';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/login',
+    redirectTo: '/auth',
     pathMatch: 'full'
   },
   {
@@ -15,7 +15,7 @@ const routes: Routes = [
     canActivate: [NoAuthGuard], // Should be replaced with actual auth guard
     children: [
       {
-        path: 'login',
+        path: 'auth',
         loadChildren: () =>
           import('@modules/auth/auth.module').then(m => m.AuthModule)
       },
@@ -36,6 +36,7 @@ const routes: Routes = [
       }
     ]
   }
+  // { path: '**', component: PageNotFoundComponent }, //TODO: Implement
 ];
 
 @NgModule({

@@ -8,7 +8,6 @@ import { WordItemComponent } from './page/word-list/word-item/word-item.componen
 import { DictionaryRoutingModule } from './dictionary-router.module';
 
 
-
 @NgModule({
   declarations: [DictionaryListComponent, DictionaryItemComponent, WordListComponent, WordItemComponent],
   imports: [
