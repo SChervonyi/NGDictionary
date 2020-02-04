@@ -6,7 +6,7 @@ import { NoAuthGuard } from '@core/guard/no-auth.guard';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/auth',
+    redirectTo: '/auth/login',
     pathMatch: 'full'
   },
   {
