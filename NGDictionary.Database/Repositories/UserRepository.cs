@@ -27,9 +27,9 @@ namespace NGDictionary.Database.Repositories
             _context.Users.Remove(userToDelete);
         }
 
-        public User? GetUserByLogin(string login)
+        public User? GetUserByUsername(string username)
         {
-            return _context.Users.SingleOrDefault(user => user.Login == login);
+            return _context.Users.SingleOrDefault(user => user.Username == username);
         }
 
         public void UpdateUser(User user)

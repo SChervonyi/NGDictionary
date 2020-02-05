@@ -5,7 +5,7 @@ namespace NGDictionary.Database.Interfaces.Repositories
 {
     public interface IUserRepository
     {
-        User? GetUserByLogin(string login);
+        User? GetUserByUsername(string username);
 
         void AddUser(User user);
 

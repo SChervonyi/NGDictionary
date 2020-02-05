@@ -28,9 +28,9 @@ namespace NGDictionary.Services
             _unitOfWork.Save();
         }
 
-        public void UpdatePassword(string login, string newPassword)
+        public void UpdatePassword(string username, string newPassword)
         {
-            var user = _unitOfWork.UserRepository.GetUserByLogin(login);
+            var user = _unitOfWork.UserRepository.GetUserByUsername(username);
             if (user is null) throw new ApplicationException("User not found.");
 
             user.Password = _passwordHasher.Hash(newPassword);
@@ -44,10 +44,10 @@ namespace NGDictionary.Services
             _unitOfWork.Save();
         }
 
-        public User Login(string login, string password)
+        public User Login(string username, string password)
         {
             // TODO: Handle if needsUpgrade is true;
-            var user = _unitOfWork.UserRepository.GetUserByLogin(login);
+            var user = _unitOfWork.UserRepository.GetUserByUsername(username);
             if (user is null) throw new AuthenticationException("Login/Password combination is not valid.");
 
             var (verified, needsUpgrade) = _passwordHasher.Check(user.Password, password);
