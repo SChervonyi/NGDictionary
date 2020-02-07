@@ -2,6 +2,8 @@
 using NGDictionary.Dto;
 using System;
 
+// https://docs.microsoft.com/en-us/ef/core/managing-schemas/migrations/?tabs=dotnet-core-cli - Migrations
+// https://docs.microsoft.com/en-us/ef/core/miscellaneous/cli/dotnet - EF Core tools reference - .NET CLI
 namespace NGDictionary.Database
 {
     public class EFDbContext : DbContext
