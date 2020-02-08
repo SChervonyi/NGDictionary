@@ -22,6 +22,7 @@ namespace NGDictionary.Database
 
         public DbSet<Word> Words { get; set; } = null!;
 
+        // https://docs.microsoft.com/en-us/ef/core/modeling/relationships?tabs=fluent-api%2Cfluent-api-simple-key%2Csimple-key - Fluent API configuration
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

@@ -19,6 +19,8 @@ namespace NGDictionary.Dto
 
         public string? Details { get; set; }
 
+        public Dictionary Dictionary { get; set; } = null!;
+
         [JsonIgnore]
         public Guid DictionaryId { get; set; }
     }
