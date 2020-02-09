@@ -26,21 +26,25 @@ namespace NGDictionary.Database.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(515)")
-                        .HasMaxLength(515);
+                        .HasColumnName("Description")
+                        .HasColumnType("nvarchar(512)")
+                        .HasMaxLength(512);
 
                     b.Property<string>("ImageUrl")
                         .IsRequired()
+                        .HasColumnName("ImageUrl")
                         .HasColumnType("varchar(2083)")
                         .HasMaxLength(2083);
 
                     b.Property<bool>("IsFavorite")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("IsFavorite")
                         .HasColumnType("bit")
                         .HasDefaultValue(false);
 
                     b.Property<string>("Name")
                         .IsRequired()
+                        .HasColumnName("Name")
                         .HasColumnType("nvarchar(256)")
                         .HasMaxLength(256);
 
@@ -57,25 +61,25 @@ namespace NGDictionary.Database.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnName("DictionaryMeta_Description")
-                        .HasColumnType("nvarchar(515)")
-                        .HasMaxLength(515);
+                        .HasColumnName("Description")
+                        .HasColumnType("nvarchar(512)")
+                        .HasMaxLength(512);
 
                     b.Property<string>("ImageUrl")
                         .IsRequired()
-                        .HasColumnName("DictionaryMeta_ImageUrl")
+                        .HasColumnName("ImageUrl")
                         .HasColumnType("varchar(2083)")
                         .HasMaxLength(2083);
 
                     b.Property<bool>("IsFavorite")
                         .ValueGeneratedOnAdd()
-                        .HasColumnName("DictionaryMeta_IsFavorite")
+                        .HasColumnName("IsFavorite")
                         .HasColumnType("bit")
                         .HasDefaultValue(false);
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnName("DictionaryMeta_Name")
+                        .HasColumnName("Name")
                         .HasColumnType("nvarchar(256)")
                         .HasMaxLength(256);
 

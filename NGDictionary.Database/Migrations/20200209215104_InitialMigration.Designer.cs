@@ -10,8 +10,8 @@ using NGDictionary.Database;
 namespace NGDictionary.Database.Migrations
 {
     [DbContext(typeof(EFDbContext))]
-    [Migration("20200206212535_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20200209215104_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -24,21 +24,31 @@ namespace NGDictionary.Database.Migrations
             modelBuilder.Entity("NGDictionary.Dto.Dictionary", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnName("Description")
+                        .HasColumnType("nvarchar(512)")
+                        .HasMaxLength(512);
 
                     b.Property<string>("ImageUrl")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnName("ImageUrl")
+                        .HasColumnType("varchar(2083)")
+                        .HasMaxLength(2083);
 
                     b.Property<bool>("IsFavorite")
-                        .HasColumnType("bit");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("IsFavorite")
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnName("Name")
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
 
                     b.HasKey("Id");
 
@@ -52,18 +62,32 @@ namespace NGDictionary.Database.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnName("Description")
+                        .HasColumnType("nvarchar(512)")
+                        .HasMaxLength(512);
 
                     b.Property<string>("ImageUrl")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnName("ImageUrl")
+                        .HasColumnType("varchar(2083)")
+                        .HasMaxLength(2083);
+
+                    b.Property<bool>("IsFavorite")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("IsFavorite")
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnName("Name")
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
 
                     b.HasKey("Id");
 
-                    b.ToTable("DictionariesMeta");
+                    b.ToTable("Dictionaries");
                 });
 
             modelBuilder.Entity("NGDictionary.Dto.User", b =>
@@ -75,15 +99,18 @@ namespace NGDictionary.Database.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
 
                     b.Property<string>("Username")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(128)")
+                        .HasMaxLength(128);
 
                     b.HasKey("Id");
 
@@ -97,24 +124,31 @@ namespace NGDictionary.Database.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("AudioUrl")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("varchar(2083)")
+                        .HasMaxLength(2083);
 
                     b.Property<string>("Details")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(512)")
+                        .HasMaxLength(512);
 
                     b.Property<Guid>("DictionaryId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("ImageUrl")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("varchar(2083)")
+                        .HasMaxLength(2083);
 
                     b.Property<string>("Text")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
 
                     b.Property<string>("Translation")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
 
                     b.HasKey("Id");
 
@@ -123,9 +157,18 @@ namespace NGDictionary.Database.Migrations
                     b.ToTable("Words");
                 });
 
+            modelBuilder.Entity("NGDictionary.Dto.Dictionary", b =>
+                {
+                    b.HasOne("NGDictionary.Dto.DictionaryMeta", null)
+                        .WithOne()
+                        .HasForeignKey("NGDictionary.Dto.Dictionary", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("NGDictionary.Dto.Word", b =>
                 {
-                    b.HasOne("NGDictionary.Dto.Dictionary", null)
+                    b.HasOne("NGDictionary.Dto.Dictionary", "Dictionary")
                         .WithMany("Words")
                         .HasForeignKey("DictionaryId")
                         .OnDelete(DeleteBehavior.Cascade)

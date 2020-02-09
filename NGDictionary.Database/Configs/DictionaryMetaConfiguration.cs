@@ -15,10 +15,10 @@ namespace NGDictionary.Database.Configs
 
             builder.HasKey(x => x.Id);
 
-            builder.Property(x => x.Name).IsRequired().HasMaxLength(256);
-            builder.Property(x => x.Description).IsRequired().HasMaxLength(515);
-            builder.Property(x => x.IsFavorite).IsRequired().HasDefaultValue(false);
-            builder.Property(x => x.ImageUrl).IsRequired().HasMaxLength(2083).HasColumnType("varchar(2083)");
+            builder.Property(x => x.Name).HasColumnName("Name").IsRequired().HasMaxLength(256);
+            builder.Property(x => x.Description).HasColumnName("Description").IsRequired().HasMaxLength(512); ;
+            builder.Property(x => x.IsFavorite).HasColumnName("IsFavorite").IsRequired().HasDefaultValue(false);
+            builder.Property(x => x.ImageUrl).HasColumnName("ImageUrl").IsRequired().HasMaxLength(2083).HasColumnType("varchar(2083)");
         }
     }
 }
