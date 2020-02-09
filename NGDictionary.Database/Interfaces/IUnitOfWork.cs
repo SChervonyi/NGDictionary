@@ -1,5 +1,6 @@
 ﻿using NGDictionary.Database.Interfaces.Repositories;
 using System;
+using System.Threading.Tasks;
 
 namespace NGDictionary.Database.Interfaces
 {
@@ -11,6 +12,6 @@ namespace NGDictionary.Database.Interfaces
 
         IWordRepository WordRepository { get; }
 
-        void Save();
+        Task SaveAsync();
     }
 }

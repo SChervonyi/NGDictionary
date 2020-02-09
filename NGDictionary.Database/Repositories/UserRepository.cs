@@ -1,9 +1,11 @@
-﻿using NGDictionary.Database.Interfaces.Repositories;
+﻿using Microsoft.EntityFrameworkCore;
+using NGDictionary.Database.Interfaces.Repositories;
 using NGDictionary.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace NGDictionary.Database.Repositories
 {
@@ -16,25 +18,25 @@ namespace NGDictionary.Database.Repositories
             _context = context;
         }
 
-        public void AddUser(User user)
+        public async Task AddUserAsync(User user)
         {
-            _context.Users.Add(user);
+            await _context.Users.AddAsync(user);
         }
 
-        public void DeleteUser(int userId)
+        public async Task DeleteUserAsync(int userId)
         {
-            var userToDelete = _context.Users.Find(userId);
+            var userToDelete = await _context.Users.FindAsync(userId);
             _context.Users.Remove(userToDelete);
         }
 
-        public User? GetUserByUsername(string username)
+        public async Task<User?> GetUserByUsernameAsync(string username)
         {
-            return _context.Users.SingleOrDefault(user => user.Username == username);
+            return await _context.Users.SingleOrDefaultAsync(user => user.Username == username);
         }
 
         public void UpdateUser(User user)
         {
-            _context.Users.Update(user);
+            _context.Entry(user).State = EntityState.Modified;
         }
     }
 }

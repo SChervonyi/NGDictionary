@@ -4,6 +4,7 @@ using NGDictionary.Database.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace NGDictionary.Database
 {
@@ -26,9 +27,9 @@ namespace NGDictionary.Database
 
         public IWordRepository WordRepository { get; private set; }
 
-        public void Save()
+        public async Task SaveAsync()
         {
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
         protected virtual void Dispose(bool disposing)

@@ -5,6 +5,7 @@ using NGDictionary.Services.Interfaces.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Security.Authentication;
+using System.Threading.Tasks;
 
 namespace NGDictionary.Services
 {
@@ -21,33 +22,33 @@ namespace NGDictionary.Services
             _passwordHasher = passwordHasher;
         }
 
-        public void AddUser(User user)
+        public async Task AddUserAsync(User user)
         {
             user.Password = _passwordHasher.Hash(user.Password);
-            _unitOfWork.UserRepository.AddUser(user);
-            _unitOfWork.Save();
+            await _unitOfWork.UserRepository.AddUserAsync(user);
+            await _unitOfWork.SaveAsync();
         }
 
-        public void UpdatePassword(string username, string newPassword)
+        public async Task UpdatePasswordAsync(string username, string newPassword)
         {
-            var user = _unitOfWork.UserRepository.GetUserByUsername(username);
+            var user = await _unitOfWork.UserRepository.GetUserByUsernameAsync(username);
             if (user is null) throw new ApplicationException("User not found.");
 
             user.Password = _passwordHasher.Hash(newPassword);
             _unitOfWork.UserRepository.UpdateUser(user);
-            _unitOfWork.Save();
+            await _unitOfWork.SaveAsync();
         }
 
-        public void DeleteUser(int userId)
+        public async Task DeleteUserAsync(int userId)
         {
-            _unitOfWork.UserRepository.DeleteUser(userId);
-            _unitOfWork.Save();
+            await _unitOfWork.UserRepository.DeleteUserAsync(userId);
+            await _unitOfWork.SaveAsync();
         }
 
-        public User Login(string username, string password)
+        public async Task<User> LoginAsync(string username, string password)
         {
             // TODO: Handle if needsUpgrade is true;
-            var user = _unitOfWork.UserRepository.GetUserByUsername(username);
+            var user = await _unitOfWork.UserRepository.GetUserByUsernameAsync(username);
             if (user is null) throw new AuthenticationException("Login/Password combination is not valid.");
 
             var (verified, needsUpgrade) = _passwordHasher.Check(user.Password, password);
@@ -57,10 +58,10 @@ namespace NGDictionary.Services
             return user;
         }
 
-        public void UpdateUser(User user)
+        public async Task UpdateUserAsync(User user)
         {
             _unitOfWork.UserRepository.UpdateUser(user);
-            _unitOfWork.Save();
+            await _unitOfWork.SaveAsync();
         }
 
         public void Dispose()

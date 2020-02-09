@@ -1,16 +1,19 @@
 ﻿using NGDictionary.Dto;
 using System;
+using System.Threading.Tasks;
 
 namespace NGDictionary.Services.Interfaces
 {
     public interface IAuthService: IDisposable
     {
-        User Login(string login, string password);
+        Task<User> LoginAsync(string username, string password);
 
-        void AddUser(User user);
+        Task AddUserAsync(User user);
 
-        void UpdateUser(User user);
+        Task UpdatePasswordAsync(string username, string newPassword);
 
-        void DeleteUser(int userId);
+        Task UpdateUserAsync(User user);
+
+        Task DeleteUserAsync(int userId);
     }
 }

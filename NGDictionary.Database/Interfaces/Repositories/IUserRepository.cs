@@ -1,16 +1,17 @@
 ﻿using NGDictionary.Dto;
 using System;
+using System.Threading.Tasks;
 
 namespace NGDictionary.Database.Interfaces.Repositories
 {
     public interface IUserRepository
     {
-        User? GetUserByUsername(string username);
+        Task<User?> GetUserByUsernameAsync(string username);
 
-        void AddUser(User user);
+        Task AddUserAsync(User user);
 
         void UpdateUser(User user);
 
-        void DeleteUser(int userId);
+        Task DeleteUserAsync(int userId);
     }
 }

@@ -23,14 +23,14 @@ namespace NGDictionary.Controllers
         }
 
         [HttpPost]
-        public ActionResult<User> Post(User user)
+        public async Task<IActionResult> Post(User user)
         {
             if (user == null)
             {
                 return BadRequest();
             }
 
-            _authService.AddUser(user);
+            await _authService.AddUserAsync(user);
             return Ok(user);
         }
 
