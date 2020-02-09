@@ -11,7 +11,14 @@ namespace NGDictionary.Database.Configs
     {
         public void Configure(EntityTypeBuilder<DictionaryMeta> builder)
         {
-            throw new NotImplementedException();
+            builder.ToTable("Dictionaries");
+
+            builder.HasKey(x => x.Id);
+
+            builder.Property(x => x.Name).IsRequired().HasMaxLength(256);
+            builder.Property(x => x.Description).IsRequired().HasMaxLength(515);
+            builder.Property(x => x.IsFavorite).IsRequired().HasDefaultValue(false);
+            builder.Property(x => x.ImageUrl).IsRequired().HasMaxLength(2083).HasColumnType("varchar(2083)");
         }
     }
 }

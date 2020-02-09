@@ -11,7 +11,10 @@ namespace NGDictionary.Database.Configs
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
-            throw new NotImplementedException();
+            builder.HasKey(x => x.Id);
+            builder.Property(x => x.Email).HasMaxLength(256);
+            builder.Property(x => x.Username).HasMaxLength(128);
+            builder.Property(x => x.Password).HasMaxLength(256);
         }
     }
 }

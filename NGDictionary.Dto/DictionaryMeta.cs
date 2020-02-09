@@ -12,6 +12,8 @@ namespace NGDictionary.Dto
 
         public string? Description { get; set; }
 
+        public bool IsFavorite { get; set; }
+
         public string? ImageUrl { get; set; }
     }
 }
