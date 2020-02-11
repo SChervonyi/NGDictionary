@@ -15,5 +15,7 @@ namespace NGDictionary.Dto
         public bool IsFavorite { get; set; }
 
         public string? ImageUrl { get; set; }
+
+        public IList<UserDictionary> Users { get; set; } = null!;
     }
 }
