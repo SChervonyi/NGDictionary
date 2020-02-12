@@ -16,6 +16,6 @@ namespace NGDictionary.Dto
 
         public string Email { get; set; } = null!;
 
-        public IList<UserDictionary>? Dictionaries { get; set; }
+        public IList<UserDictionary>? UserDictionaries { get; set; }
     }
 }

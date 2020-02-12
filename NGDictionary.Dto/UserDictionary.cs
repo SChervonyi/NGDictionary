@@ -9,7 +9,7 @@ namespace NGDictionary.Dto
         public int UserId { get; set; }
         public User User { get; set; } = null!;
 
-        public int DictionaryId { get; set; }
+        public Guid DictionaryId { get; set; }
         public Dictionary Dictionary { get; set; } = null!;
     }
 }

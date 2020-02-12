@@ -18,6 +18,6 @@ namespace NGDictionary.Dto
 
         public IList<Word>? Words { get; set; }
 
-        public IList<UserDictionary> Users { get; set; } = null!;
+        public IList<UserDictionary> UserDictionaries { get; set; } = null!;
     }
 }
