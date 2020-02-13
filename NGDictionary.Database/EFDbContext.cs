@@ -18,8 +18,6 @@ namespace NGDictionary.Database
 
         public DbSet<Dictionary> Dictionaries { get; set; } = null!;
 
-        public DbSet<DictionaryMeta> DictionariesMeta { get; set; } = null!;
-
         public DbSet<Word> Words { get; set; } = null!;
 
         // https://docs.microsoft.com/en-us/ef/core/modeling/relationships?tabs=fluent-api%2Cfluent-api-simple-key%2Csimple-key - Fluent API configuration

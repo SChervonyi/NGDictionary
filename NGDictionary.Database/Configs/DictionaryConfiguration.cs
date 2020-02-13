@@ -13,15 +13,15 @@ namespace NGDictionary.Database.Configs
         {
             builder.HasKey(x => x.Id);
 
-            builder.Property(x => x.Name).HasColumnName("Name").IsRequired().HasMaxLength(256);
-            builder.Property(x => x.Description).HasColumnName("Description").HasMaxLength(512);
-            builder.Property(x => x.IsFavorite).HasColumnName("IsFavorite").IsRequired().HasDefaultValue(false);
-            builder.Property(x => x.ImageUrl).HasColumnName("ImageUrl").HasMaxLength(2083).HasColumnType("varchar(2083)");
+            builder.Property(x => x.Name).IsRequired().HasMaxLength(256);
+            builder.Property(x => x.Description).HasMaxLength(512);
+            builder.Property(x => x.IsFavorite).IsRequired().HasDefaultValue(false);
+            builder.Property(x => x.ImageUrl).HasMaxLength(2083).HasColumnType("varchar(2083)");
 
             builder.HasMany(x => x.Words).WithOne();
 
             // https://entityframeworkcore.com/knowledge-base/49986756/efcore-map-2-entities-to-same-table
-            builder.HasOne<DictionaryMeta>().WithOne().HasForeignKey<Dictionary>(x => x.Id);
+            // builder.HasOne<DictionaryMeta>().WithOne().HasForeignKey<Dictionary>(x => x.Id);
         }
     }
 }
