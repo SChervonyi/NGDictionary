@@ -10,6 +10,10 @@ namespace NGDictionary.Controllers
     [Route("api/[controller]")]
     [ApiController]
     public class DictionaryController : ControllerBase
-    {
+    {        
+        public DictionaryController()
+        {
+
+        }
     }
 }
