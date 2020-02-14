@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Authentication;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -22,8 +23,8 @@ namespace NGDictionary.Controllers
             _authService = authService;
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Post(User user)
+        [HttpPost("signUp")]
+        public async Task<IActionResult> SignUp(User user)
         {
             if (user == null)
             {
@@ -31,6 +32,29 @@ namespace NGDictionary.Controllers
             }
 
             await _authService.AddUserAsync(user);
+            return Ok(user);
+        }        
+        
+        [HttpPost("signIn")]
+        public async Task<IActionResult> SignIn(User user)
+        {
+            if (user == null)
+            {
+                return BadRequest();
+            }
+
+            try
+            {
+                await _authService.LoginAsync(user.Username, user.Password);
+            }
+            catch (AuthenticationException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch
+            {
+                return StatusCode(500);
+            }
             return Ok(user);
         }
 
