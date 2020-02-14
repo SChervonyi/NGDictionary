@@ -38,7 +38,7 @@ export class AuthService {
   }
 
   signUp(credentials: RegisterCredentials): Observable<User> {
-    return this.http.post<User>('api/auth', credentials)
+    return this.http.post<User>('api/auth/signUp', credentials)
       .pipe(tap(
       (user: User) => {
         // this.setAuth(user); //TODO: Implement
