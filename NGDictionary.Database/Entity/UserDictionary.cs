@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace NGDictionary.Dto
+namespace NGDictionary.Database.Entity
 {
     public class UserDictionary
     {

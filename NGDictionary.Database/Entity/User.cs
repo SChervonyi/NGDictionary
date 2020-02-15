@@ -1,13 +1,11 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace NGDictionary.Dto
+namespace NGDictionary.Database.Entity
 {
     public class User
     {
-        [JsonIgnore]
         public int Id { get; set; }
 
         public string Username { get; set; } = null!;

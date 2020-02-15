@@ -20,8 +20,4 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\NGDictionary.Dto\NGDictionary.Dto.csproj" />
-  </ItemGroup>
-
 </Project>

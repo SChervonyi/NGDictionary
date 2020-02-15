@@ -11,7 +11,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\NGDictionary.Database\NGDictionary.Database.csproj" />
-    <ProjectReference Include="..\NGDictionary.Dto\NGDictionary.Dto.csproj" />
   </ItemGroup>
 
 </Project>

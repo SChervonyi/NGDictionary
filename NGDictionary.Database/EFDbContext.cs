@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using NGDictionary.Dto;
+using NGDictionary.Database.Entity;
 using System;
 using System.Reflection;
 

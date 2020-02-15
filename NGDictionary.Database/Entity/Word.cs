@@ -1,9 +1,8 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace NGDictionary.Dto
+namespace NGDictionary.Database.Entity
 {
     public class Word
     {
@@ -21,7 +20,6 @@ namespace NGDictionary.Dto
 
         public Dictionary Dictionary { get; set; } = null!;
 
-        [JsonIgnore]
         public Guid DictionaryId { get; set; }
     }
 }

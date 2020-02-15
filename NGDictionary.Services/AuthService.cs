@@ -1,5 +1,5 @@
 ﻿using NGDictionary.Database.Interfaces;
-using NGDictionary.Dto;
+using NGDictionary.Database.Entity;
 using NGDictionary.Services.Interfaces;
 using NGDictionary.Services.Interfaces.Helpers;
 using System;

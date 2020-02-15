@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using NGDictionary.Dto;
+using NGDictionary.Database.Entity;
 using System;
 using System.Collections.Generic;
 using System.Text;

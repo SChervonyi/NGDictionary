@@ -1,4 +1,4 @@
-﻿using NGDictionary.Dto;
+﻿using NGDictionary.Database.Entity;
 using System;
 
 namespace NGDictionary.Database.Interfaces.Repositories
