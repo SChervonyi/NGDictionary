@@ -38,7 +38,7 @@ export class RegisterComponent implements OnInit {
 
     const credentials = this.authForm.value;
     this.authService
-      .signUp(credentials)
+      .register(credentials)
       .subscribe(
         data => this.router.navigateByUrl('/'),
         err => {

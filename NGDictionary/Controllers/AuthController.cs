@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mime;
 using System.Security.Authentication;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using NGDictionary.Database.Entity;
 using NGDictionary.Dto;
 using NGDictionary.Services.Interfaces;
 
@@ -23,39 +25,43 @@ namespace NGDictionary.Controllers
             _authService = authService;
         }
 
-        [HttpPost("signUp")]
-        public async Task<IActionResult> SignUp(User user)
+        [HttpPost("register")]
+        [Consumes(MediaTypeNames.Application.Json)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> Register(RegisterCredentialsDto credintials)
         {
-            if (user == null)
+            if (credintials is null)
             {
-                return BadRequest();
+                return BadRequest("Invalid credentials.");
             }
 
             await _authService.AddUserAsync(user);
             return Ok(user);
-        }        
+        }
         
-        [HttpPost("signIn")]
-        public async Task<IActionResult> SignIn(User user)
+        [HttpPost("login")]
+        [Consumes(MediaTypeNames.Application.Json)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> Login(LoginCredentionalsDto? credentials)
         {
-            if (user == null)
+            if (credentials is null 
+                || credentials.Username is null
+                || credentials.Password is null)
             {
-                return BadRequest();
+                return BadRequest("Invalid credentials.");
             }
 
             try
             {
-                await _authService.LoginAsync(user.Username, user.Password);
+                var user = await _authService.LoginAsync(credentials.Username, credentials.Password);
+                return Ok(user);
             }
             catch (AuthenticationException ex)
             {
                 return BadRequest(ex.Message);
             }
-            catch
-            {
-                return StatusCode(500);
-            }
-            return Ok(user);
         }
 
         protected override void Dispose(bool disposing)

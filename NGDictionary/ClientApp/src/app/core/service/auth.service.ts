@@ -27,18 +27,19 @@ export class AuthService {
 
   // TODO: Implement
   login(loginContext: LoginContextInterface): Observable<User> {
-    if (
-      loginContext.username === defaultUser.username &&
-      loginContext.password === defaultUser.password
-    ) {
-        return of(defaultUser);
-    }
+    return this.http.post<User>('api/auth/login', loginContext)
+      .pipe(tap(
+      (user: User) => {
+        // this.setAuth(user); //TODO: Implement
+        console.log(user);
+      }
+    ));
 
-    return throwError('Invalid username or password');
+    //return throwError('Invalid username or password');
   }
 
-  signUp(credentials: RegisterCredentials): Observable<User> {
-    return this.http.post<User>('api/auth/signUp', credentials)
+  register(credentials: RegisterCredentials): Observable<User> {
+    return this.http.post<User>('api/auth/register', credentials)
       .pipe(tap(
       (user: User) => {
         // this.setAuth(user); //TODO: Implement
