@@ -16,6 +16,7 @@ using NGDictionary.Services;
 using NGDictionary.Services.Helpers;
 using NGDictionary.Services.Interfaces;
 using NGDictionary.Services.Interfaces.Helpers;
+using System.Reflection;
 
 namespace NGDictionary
 {
@@ -31,6 +32,9 @@ namespace NGDictionary
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var connectionString = Configuration.GetConnectionString("DefaultConnection");
+            var migrationsAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
+
             services.AddControllersWithViews();
             // https://docs.microsoft.com/en-us/aspnet/core/security/anti-request-forgery?view=aspnetcore-3.1
             // https://www.domstamand.com/secure-your-angularasp-net-core-application-with-anti-forgery-token/
@@ -38,13 +42,57 @@ namespace NGDictionary
             // MapControllerRoute or AddMvc or MapRazorPages or MapBlazorHub
             //services.AddAntiforgery(options => options.HeaderName = "X-XSRF-TOKEN");
 
-            services.AddDbContext<EFDbContext>(options => 
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<EFDbContext>(options => options.UseSqlServer(connectionString,
+                            sql => sql.MigrationsAssembly(migrationsAssembly)));
 
             // add identity
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<EFDbContext>()
                 .AddDefaultTokenProviders();
+
+            // Configure Identity options and password complexity
+            services.Configure<IdentityOptions>(options =>
+            {
+                // User settings
+                options.User.RequireUniqueEmail = true;
+
+                //// Password settings
+                //options.Password.RequireDigit = true;
+                //options.Password.RequiredLength = 8;
+                //options.Password.RequireNonAlphanumeric = false;
+                //options.Password.RequireUppercase = true;
+                //options.Password.RequireLowercase = false;
+
+                //// Lockout settings
+                //options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(30);
+                //options.Lockout.MaxFailedAccessAttempts = 10;
+            });
+
+            // Adds IdentityServer.
+            var builder = services.AddIdentityServer(options =>
+            {
+                options.Events.RaiseErrorEvents = true;
+                options.Events.RaiseInformationEvents = true;
+                options.Events.RaiseFailureEvents = true;
+                options.Events.RaiseSuccessEvents = true;
+            })
+             .AddAspNetIdentity<ApplicationUser>()
+             // this adds the config data from DB (clients, resources)
+             .AddConfigurationStore(options =>
+             {
+                 options.ConfigureDbContext = b => b.UseSqlServer(connectionString,
+                     sql => sql.MigrationsAssembly(migrationsAssembly));
+             })
+             // this adds the operational data from DB (codes, tokens, consents)
+             .AddOperationalStore(options =>
+             {
+                 options.ConfigureDbContext = b => b.UseSqlServer(connectionString,
+                            sql => sql.MigrationsAssembly(migrationsAssembly));
+
+                 // this enables automatic token cleanup. this is optional.
+                 //  options.EnableTokenCleanup = true;
+                 // options.TokenCleanupInterval = 15; // frequency in seconds to cleanup stale grants. 15 is useful during debugging
+             });
 
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IUserRepository, UserRepository>();
