@@ -29,15 +29,15 @@ namespace NGDictionary.Controllers
         [Consumes(MediaTypeNames.Application.Json)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> Register(RegisterCredentialsDto credintials)
+        public IActionResult Register(RegisterCredentialsDto credintials)
         {
             if (credintials is null)
             {
                 return BadRequest("Invalid credentials.");
             }
 
-            await _authService.AddUserAsync(user);
-            return Ok(user);
+            // await _authService.AddUserAsync(user);
+            return Ok();
         }
         
         [HttpPost("login")]
