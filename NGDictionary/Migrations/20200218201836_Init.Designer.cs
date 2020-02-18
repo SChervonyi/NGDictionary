@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NGDictionary.Database;
 
-namespace NGDictionary.Database.Migrations
+namespace NGDictionary.Migrations
 {
     [DbContext(typeof(EFDbContext))]
-    partial class EFDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200218201836_Init")]
+    partial class Init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -19,7 +21,7 @@ namespace NGDictionary.Database.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("NGDictionary.Dto.Dictionary", b =>
+            modelBuilder.Entity("NGDictionary.Database.Entity.Dictionary", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -48,7 +50,7 @@ namespace NGDictionary.Database.Migrations
                     b.ToTable("Dictionaries");
                 });
 
-            modelBuilder.Entity("NGDictionary.Dto.User", b =>
+            modelBuilder.Entity("NGDictionary.Database.Entity.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -75,7 +77,7 @@ namespace NGDictionary.Database.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("NGDictionary.Dto.UserDictionary", b =>
+            modelBuilder.Entity("NGDictionary.Database.Entity.UserDictionary", b =>
                 {
                     b.Property<int>("UserId")
                         .HasColumnType("int");
@@ -90,7 +92,7 @@ namespace NGDictionary.Database.Migrations
                     b.ToTable("UserDictionary");
                 });
 
-            modelBuilder.Entity("NGDictionary.Dto.Word", b =>
+            modelBuilder.Entity("NGDictionary.Database.Entity.Word", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -128,24 +130,24 @@ namespace NGDictionary.Database.Migrations
                     b.ToTable("Words");
                 });
 
-            modelBuilder.Entity("NGDictionary.Dto.UserDictionary", b =>
+            modelBuilder.Entity("NGDictionary.Database.Entity.UserDictionary", b =>
                 {
-                    b.HasOne("NGDictionary.Dto.Dictionary", "Dictionary")
+                    b.HasOne("NGDictionary.Database.Entity.Dictionary", "Dictionary")
                         .WithMany("UserDictionaries")
                         .HasForeignKey("DictionaryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("NGDictionary.Dto.User", "User")
+                    b.HasOne("NGDictionary.Database.Entity.User", "User")
                         .WithMany("UserDictionaries")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("NGDictionary.Dto.Word", b =>
+            modelBuilder.Entity("NGDictionary.Database.Entity.Word", b =>
                 {
-                    b.HasOne("NGDictionary.Dto.Dictionary", "Dictionary")
+                    b.HasOne("NGDictionary.Database.Entity.Dictionary", "Dictionary")
                         .WithMany("Words")
                         .HasForeignKey("DictionaryId")
                         .OnDelete(DeleteBehavior.Cascade)
