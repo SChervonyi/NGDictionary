@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NGDictionary.Database", "NG
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NGDictionary.Services", "NGDictionary.Services\NGDictionary.Services.csproj", "{21202A3C-4767-481D-8700-1A2CA31714FD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NGDictionary.Core", "NGDictionary.Core\NGDictionary.Core.csproj", "{A65B09E9-4D5A-47CD-A184-340EF160F0B9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{21202A3C-4767-481D-8700-1A2CA31714FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{21202A3C-4767-481D-8700-1A2CA31714FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{21202A3C-4767-481D-8700-1A2CA31714FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A65B09E9-4D5A-47CD-A184-340EF160F0B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A65B09E9-4D5A-47CD-A184-340EF160F0B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A65B09E9-4D5A-47CD-A184-340EF160F0B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A65B09E9-4D5A-47CD-A184-340EF160F0B9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
