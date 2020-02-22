@@ -11,6 +11,8 @@ namespace NGDictionary.Database.Entity
 
         public string Password { get; set; } = null!;
 
+        public bool IsEnabled { get; set; }
+
         public IList<UserDictionary>? UserDictionaries { get; set; }
     }
 }
