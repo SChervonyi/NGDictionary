@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace NGDictionary.Database.Types
+namespace NGDictionary.Core
 {
     public class ConfigurationManager
     {
